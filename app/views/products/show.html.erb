@@ -26,6 +26,13 @@
       </div>
     </div>
 
+
+
+
+    <% @product.reviews.each do |review| %>
+      <%= render 'review', username: review.user.name, description: review.description, rating: review.rating, created: review.created_at.strftime("%F") %>
+    <% end %>
+
   </article>
 
 </section>
