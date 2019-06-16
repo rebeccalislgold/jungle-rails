@@ -1,11 +1,8 @@
 <dl>
-
-    <dt><%= review.rating %></dt>
+    <dt>Rating: <%= review.rating %>/5</dt>
     <dt><%= review.user %></dt>
     <dt><%= review.created_at %></dt>
     <dd><%= review.description %></dd>
-
-
     <% if (review.user == current_user) %>
         <%= link_to 'Delete', [review.product, review],
         method: :delete,
