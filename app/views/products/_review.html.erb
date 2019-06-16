@@ -1,6 +1,15 @@
 <dl>
-    <dt><%= rating %></dt>
-    <dt><%= username %></dt>
-    <dt><%= created %></dt>
-    <dd><%= description %></dd>
+
+    <dt><%= review.rating %></dt>
+    <dt><%= review.user %></dt>
+    <dt><%= review.created_at %></dt>
+    <dd><%= review.description %></dd>
+
+
+    <% if (review.user == current_user) %>
+        <%= link_to 'Delete', [review.product, review],
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %>
+    <% end %>
+
 </dl>

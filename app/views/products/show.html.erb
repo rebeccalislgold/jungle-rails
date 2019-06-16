@@ -26,31 +26,28 @@
       </div>
     </div>
 
-    <% @product.reviews.each do |review| %>
-      <%= render 'review', username: review.user, description: review.description, rating: review.rating, created: review.created_at %>
+    <% if (current_user) %>
+      <h3> Add a review:</h3>
+      <%= form_for [@product, @product.reviews.build]  do |f| %>
+        <p>
+          <%= f.label :rating %><br>
+          <%= f.select :rating, [1, 2, 3, 4, 5] %>
+        </p>
+        <p>
+          <%= f.label :description %><br>
+          <%= f.text_area :description %>
+        </p>
+        <p>
+          <%= f.submit %>
+        </p>
+      <% end %>
     <% end %>
 
-    <h3> Add a review:</h3>
-
-    <div>
-    <%= form_for [@product, @product.reviews.build]  do |f| %>
-      <p>
-        <%= f.label :rating %><br>
-        <%= f.select :rating, [1, 2, 3, 4, 5] %>
-      </p>
-      <p>
-        <%= f.label :description %><br>
-        <%= f.text_area :description %>
-      </p>
-      <p>
-        <%= f.submit %>
-      </p>
-    <% end %>
+    </div>
+      <% @product.reviews.reverse_each do |review| %>
+        <%= render 'review', review: review %>
+      <% end %>
     </div>
 
-
-    
-    
-    </article>
-    
-    </section>
+  </article>
+</section>
