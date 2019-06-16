@@ -26,6 +26,12 @@
       </div>
     </div>
 
+    </div>
+      <% @product.reviews.reverse_each do |review| %>
+        <%= render 'review', review: review, username: review.user.name, created: review.created_at.strftime("%F")%>
+      <% end %>
+    </div>
+
     <% if (current_user) %>
       <h3> Add a review:</h3>
       <%= form_for [@product, @product.reviews.build]  do |f| %>
@@ -42,12 +48,6 @@
         </p>
       <% end %>
     <% end %>
-
-    </div>
-      <% @product.reviews.reverse_each do |review| %>
-        <%= render 'review', review: review %>
-      <% end %>
-    </div>
 
   </article>
 </section>
